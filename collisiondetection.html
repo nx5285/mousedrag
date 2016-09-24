@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#div{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				position: absolute;
+				left: 0;
+				top: 0;
+				z-index: 2;
+			}
+			#div1{
+				width: 100px;
+				height: 100px;
+				background-color: blue;
+				position: absolute;
+				left: 200px;
+				top: 200px;
+			}
+		</style>
+		<script type="text/javascript">
+		window.onload = function(){
+			var div = document.getElementById('div');
+			var div1 = document.getElementById('div1');
+			div.onmousedown = function(e){
+				var disX = e.clientX - div.offsetLeft;
+				var disT = e.clientY - div.offsetTop;
+				document.onmousemove = function(e){
+					var L = e.clientX - disX;
+					var T = e.clientY - disT;
+					var l = div.offsetLeft + div.offsetWidth;
+					var r = div.offsetLeft;
+					var l1 = div1.offsetLeft;
+					var l2 = div1.offsetLeft + div1.offsetWidth;
+					var t = div.offsetTop +div.offsetHeight;
+					var b = div.offsetTop;
+					var t1 = div1.offsetTop;
+					var t2 = div1.offsetTop + div1.offsetHeight;
+					if(L < 0){
+						L = 0;
+					}else if(L > window.innerWidth - div.offsetWidth){
+						L = window.innerWidth - div.offsetWidth;
+					}
+					if(T < 0){
+						T = 0;
+					}else if(T > window.innerHeight - div.offsetHeight){
+						T = window.innerHeight - div.offsetHeight;
+					}
+					if(l > l1 && t > t1 && r < l2 && b < t2){
+						div1.style.backgroundColor = 'yellow';
+					}else{
+						div1.style.backgroundColor = '';
+					}
+					
+					div.style.left = L + 'px';
+					div.style.top = T + 'px';
+					
+				}	
+				return false;
+			}
+			document.onmouseup = function(){
+				document.onmousemove = null;
+			}
+		}
+		</script>
+	</head>
+	<body>
+		<div id="div"></div>
+		<div id="div1"></div>
+	</body>
+</html>
