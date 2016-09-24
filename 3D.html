@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				margin: 0;
+			}
+			.div{
+				margin: 200px auto;
+				width: 200px;
+				position: relative;
+				transition: 1s;
+				transform-style: preserve-3d;
+			}
+			.box{
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 200px;
+				height: 100px;
+				background-color: blue;
+				text-align: center;
+				line-height: 100px;
+				color: white;
+				font-size: 40px;
+			}
+			.box1{
+				z-index: 10;
+			}
+			.box2{
+				top: 100px;
+				background-color: red;
+				transform-origin: top;
+				transform: rotateX(90deg);
+			}
+			.div:hover {
+				transform-origin: 0 50px 50px;
+				transform: rotateX(-90deg) rotateY(0) rotateZ(0);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="div">
+			<div class="box box1">
+				<span>123</span>
+			</div>
+			<div class="box box2">
+				<span>456</span>
+			</div>	
+		</div>
+	</body>
+</html>
